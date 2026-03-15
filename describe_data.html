@@ -192,6 +192,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
 <li class="toctree-l1"><a class="reference internal" href="visualisasi_data.html">Visualisasi Data Dataset Iris</a></li>
 </ul>
 
@@ -427,9 +429,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-hitung-gower-distance">Langkah 3: Hitung Gower Distance</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">Interpretasi Hasil</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-kosongkan-1-nilai">Menghitung jarak (kosongkan 1 nilai)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nilai-awal-umur-pada-id-m6-24">Nilai awal umur pada id M6 = 24</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">Interpretasi Hasil</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-kosongkan-1-nilai">Menghitung jarak (kosongkan 1 nilai)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-data">Normalization Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization-digunakan-untuk-mengubah-nilai-data-ke-dalam-rentang-tertentu-biasanya-0-sampai-1">Min-Max Normalization digunakan untuk mengubah nilai data ke dalam rentang tertentu, biasanya 0 sampai 1.</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
@@ -976,8 +980,9 @@ D_{M1,M2} = 0.52
 <li><p>Nilai mendekati 1 → objek sangat berbeda</p></li>
 </ul>
 <p>Nilai 0.515 menunjukkan bahwa M1 dan M2 memiliki tingkat perbedaan sedang.</p>
-<section id="menghitung-jarak-kosongkan-1-nilai">
-<h2>Menghitung jarak (kosongkan 1 nilai)<a class="headerlink" href="#menghitung-jarak-kosongkan-1-nilai" title="Permalink to this heading">#</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="menghitung-jarak-kosongkan-1-nilai">
+<h1>Menghitung jarak (kosongkan 1 nilai)<a class="headerlink" href="#menghitung-jarak-kosongkan-1-nilai" title="Permalink to this heading">#</a></h1>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>ID</p></th>
@@ -1073,9 +1078,16 @@ D_{M1,M2} = 0.52
 </tbody>
 </table>
 </div>
+<p>Nilai awal umur pada id M6 = 24</p>
 </section>
-<section id="nilai-awal-umur-pada-id-m6-24">
-<h2>Nilai awal umur pada id M6 = 24<a class="headerlink" href="#nilai-awal-umur-pada-id-m6-24" title="Permalink to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="normalization-data">
+<h1>Normalization Data<a class="headerlink" href="#normalization-data" title="Permalink to this heading">#</a></h1>
+<p>Normalisasi data adalah proses mengubah skala nilai data menjadi rentang tertentu tanpa mengubah informasi utama dari data tersebut.Dengan normalisasi, data yang memiliki nilai sangat besar tidak akan mendominasi atribut lain yang memiliki nilai kecil.</p>
+<section id="min-max-normalization">
+<h2>1. Min-Max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="min-max-normalization-digunakan-untuk-mengubah-nilai-data-ke-dalam-rentang-tertentu-biasanya-0-sampai-1">
+<h2>Min-Max Normalization digunakan untuk mengubah nilai data ke dalam rentang tertentu, biasanya 0 sampai 1.<a class="headerlink" href="#min-max-normalization-digunakan-untuk-mengubah-nilai-data-ke-dalam-rentang-tertentu-biasanya-0-sampai-1" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
@@ -1186,9 +1198,11 @@ D_{M1,M2} = 0.52
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-hitung-gower-distance">Langkah 3: Hitung Gower Distance</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">Interpretasi Hasil</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-kosongkan-1-nilai">Menghitung jarak (kosongkan 1 nilai)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nilai-awal-umur-pada-id-m6-24">Nilai awal umur pada id M6 = 24</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">Interpretasi Hasil</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-kosongkan-1-nilai">Menghitung jarak (kosongkan 1 nilai)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-data">Normalization Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization-digunakan-untuk-mengubah-nilai-data-ke-dalam-rentang-tertentu-biasanya-0-sampai-1">Min-Max Normalization digunakan untuk mengubah nilai data ke dalam rentang tertentu, biasanya 0 sampai 1.</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
