@@ -391,6 +391,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-data">Normalization Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a></li>
 </ul>
 </li>
 </ul>
@@ -415,6 +416,12 @@ document.write(`
 <p>Min-Max Normalization digunakan untuk mengubah nilai data ke dalam rentang tertentu, biasanya 0 sampai 1.</p>
 <div class="math notranslate nohighlight">
 \[ v'=\frac{v - min}{max - min} \]</div>
+</section>
+<section id="z-score-normalization">
+<h3>2. Z-Score Normalization<a class="headerlink" href="#z-score-normalization" title="Permalink to this heading">#</a></h3>
+<p>Z-score digunakan untuk menormalkan data berdasarkan rata-rata dan standar deviasi sehingga data memiliki mean = 0 dan standar deviasi = 1.</p>
+<div class="math notranslate nohighlight">
+\[ v'=\frac{v - \bar{x}}{\sigma} \]</div>
 </section>
 </section>
 </section>
@@ -476,6 +483,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-data">Normalization Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a></li>
 </ul>
 </li>
 </ul>
