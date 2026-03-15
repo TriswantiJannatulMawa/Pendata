@@ -392,6 +392,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-data">Normalization Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a></li>
 </ul>
 </li>
 </ul>
@@ -422,6 +423,12 @@ document.write(`
 <p>Z-score digunakan untuk menormalkan data berdasarkan rata-rata dan standar deviasi sehingga data memiliki mean = 0 dan standar deviasi = 1.</p>
 <div class="math notranslate nohighlight">
 \[ v'=\frac{v - \bar{x}}{\sigma} \]</div>
+</section>
+<section id="decimal-scaling-normalization">
+<h3>3. Decimal Scaling Normalization<a class="headerlink" href="#decimal-scaling-normalization" title="Permalink to this heading">#</a></h3>
+<p>Decimal scaling menormalkan data dengan membagi nilai dengan pangkat 10 sehingga nilai berada pada rentang kecil.</p>
+<div class="math notranslate nohighlight">
+\[ v'= \frac{v}{10^j} \]</div>
 </section>
 </section>
 </section>
@@ -484,6 +491,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-data">Normalization Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a></li>
 </ul>
 </li>
 </ul>
