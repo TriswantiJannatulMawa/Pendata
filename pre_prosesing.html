@@ -583,12 +583,11 @@ max=8 (1 digit),sehingga nilai j=1</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalisasi Min Max</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler_minmax</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
 
-<span class="n">data_minmax</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Umur&quot;</span><span class="p">,</span><span class="s2">&quot;IPK&quot;</span><span class="p">,</span><span class="s2">&quot;Semester&quot;</span><span class="p">]])</span>
+<span class="n">minmax</span> <span class="o">=</span> <span class="n">scaler_minmax</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Umur&quot;</span><span class="p">,</span><span class="s2">&quot;IPK&quot;</span><span class="p">,</span><span class="s2">&quot;Semester&quot;</span><span class="p">]])</span>
 
-<span class="n">df_minmax</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_minmax</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Umur&quot;</span><span class="p">,</span><span class="s2">&quot;IPK&quot;</span><span class="p">,</span><span class="s2">&quot;Semester&quot;</span><span class="p">])</span>
+<span class="n">df_minmax</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">minmax</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Umur&quot;</span><span class="p">,</span><span class="s2">&quot;IPK&quot;</span><span class="p">,</span><span class="s2">&quot;Semester&quot;</span><span class="p">])</span>
 
 <span class="n">df_minmax</span>
 </pre></div>
