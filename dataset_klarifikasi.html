@@ -466,6 +466,8 @@ document.write(`
 <section id="lakukan-pemrosesan-data">
 <h2>2. Lakukan pemrosesan data<a class="headerlink" href="#lakukan-pemrosesan-data" title="Permalink to this heading">#</a></h2>
 <p>Tahap pemrosesan data dilakukan untuk memastikan data dalam kondisi bersih dan siap digunakan dalam proses analisis.</p>
+<p>Data awal</p>
+<p><img alt="alt text" src="_images/image3.png" /></p>
 <section id="langkah-langkah-yang-dilakukan">
 <h3>Langkah-langkah yang dilakukan:<a class="headerlink" href="#langkah-langkah-yang-dilakukan" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
@@ -476,10 +478,20 @@ Data yang memiliki nilai kosong diatasi dengan:</p>
 <li><p>Mengisi nilai kategorikal menggunakan nilai yang paling sering muncul (modus)</p></li>
 </ul>
 </li>
+</ol>
+<p><img alt="alt text" src="_images/image4.png" />
+<img alt="alt text" src="_images/image5.png" /></p>
+<ol class="arabic simple" start="2">
 <li><p>Encoding Data(one to many)
 Fitur kategorikal seperti “Tekstur Tanah” diubah menjadi bentuk numerik agar dapat diproses oleh algoritma KNN.</p></li>
+</ol>
+<p><img alt="alt text" src="_images/image6.png" /></p>
+<ol class="arabic simple" start="3">
 <li><p>Normalisasi Data<br />
 Dilakukan untuk menyamakan skala seluruh fitur menggunakan metode Min-Max. Hal ini penting karena KNN menggunakan perhitungan jarak.</p></li>
+</ol>
+<p><img alt="alt text" src="_images/image7.png" /></p>
+<ol class="arabic simple" start="5">
 <li><p>Pembagian Data(partitioner)<br />
 Dataset dibagi menjadi:</p>
 <ul class="simple">
