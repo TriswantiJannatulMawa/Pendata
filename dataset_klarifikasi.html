@@ -471,35 +471,29 @@ document.write(`
 <section id="langkah-langkah-yang-dilakukan">
 <h3>Langkah-langkah yang dilakukan:<a class="headerlink" href="#langkah-langkah-yang-dilakukan" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Penanganan Missing Value<br />
-Data yang memiliki nilai kosong diatasi dengan:</p>
-<ul class="simple">
-<li><p>Mengisi nilai numerik menggunakan rata-rata (mean)</p></li>
-<li><p>Mengisi nilai kategorikal menggunakan nilai yang paling sering muncul (modus)</p></li>
-</ul>
-</li>
+<li><p>Penanganan Missing Value</p></li>
 </ol>
+<p>Data yang memiliki nilai kosong diatasi dengan:
+- Mengisi nilai numerik menggunakan rata-rata (mean)
+- Mengisi nilai kategorikal menggunakan nilai yang paling sering muncul (modus)</p>
 <p><img alt="alt text" src="_images/image4.png" />
 <img alt="alt text" src="_images/image5.png" /></p>
 <ol class="arabic simple" start="2">
-<li><p>Encoding Data(one to many)
-Fitur kategorikal seperti “Tekstur Tanah” diubah menjadi bentuk numerik agar dapat diproses oleh algoritma KNN.</p></li>
+<li><p>Encoding Data(one to many)</p></li>
 </ol>
+<p>Fitur kategorikal seperti “Tekstur Tanah” diubah menjadi bentuk numerik agar dapat diproses oleh algoritma KNN.</p>
 <p><img alt="alt text" src="_images/image6.png" /></p>
 <ol class="arabic simple" start="3">
-<li><p>Normalisasi Data<br />
-Dilakukan untuk menyamakan skala seluruh fitur menggunakan metode Min-Max. Hal ini penting karena KNN menggunakan perhitungan jarak.</p></li>
+<li><p>Normalisasi Data</p></li>
 </ol>
+<p>Dilakukan untuk menyamakan skala seluruh fitur menggunakan metode Min-Max. Hal ini penting karena KNN menggunakan perhitungan jarak.</p>
 <p><img alt="alt text" src="_images/image7.png" /></p>
 <ol class="arabic simple" start="5">
-<li><p>Pembagian Data(partitioner)<br />
-Dataset dibagi menjadi:</p>
-<ul class="simple">
-<li><p>Data latih (80%)</p></li>
-<li><p>Data uji (20%)</p></li>
-</ul>
-</li>
+<li><p>Pembagian Data(partitioner)</p></li>
 </ol>
+<p>Dataset dibagi menjadi:
+- Data latih (80%)
+- Data uji (20%)</p>
 <p><img alt="alt text" src="_images/image1.png" /></p>
 </section>
 </section>
