@@ -191,6 +191,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="pre_prosesing.html">Pre Prosesing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="information_gain.html">Information Gain</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Data Kesuburan Tanah</a></li>
+
 </ul>
 
     </div>
@@ -386,6 +387,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Data Kesuburan Tanah</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-analisis-data-menggunakan-knn">1. Lakukan analisis data menggunakan KNN</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-pemrosesan-data">2. Lakukan pemrosesan data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-yang-dilakukan">Langkah-langkah yang dilakukan:</a></li>
@@ -393,6 +395,27 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-matriks-evaluasi">3. Hitung matriks evaluasi</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-klasifikasi-kesuburan-tanah">Dataset Klasifikasi Kesuburan Tanah</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-kesuburan-tanah">Penjelasan Fitur Kesuburan Tanah</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ph-tanah">1. pH Tanah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-total">2. N Total (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-tersedia-ppm">3. P Tersedia (ppm)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-tersedia-meq-100g">4. K Tersedia (meq/100g)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-organik">5. C Organik (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ktk-meq-100g">6. KTK (meq/100g)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kejenuhan-basa">7. Kejenuhan Basa (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tekstur-tanah">8. Tekstur Tanah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kadar-air">9. Kadar Air (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-density-g-cm3">10. Bulk Density (g/cm³)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas">Definisi Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas">Distribusi Kelas</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -511,6 +534,161 @@ Dataset dibagi menjadi:</p>
 = 1.0</p>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="dataset-klasifikasi-kesuburan-tanah">
+<h1>Dataset Klasifikasi Kesuburan Tanah<a class="headerlink" href="#dataset-klasifikasi-kesuburan-tanah" title="Permalink to this heading">#</a></h1>
+<section id="penjelasan-fitur-kesuburan-tanah">
+<h2>Penjelasan Fitur Kesuburan Tanah<a class="headerlink" href="#penjelasan-fitur-kesuburan-tanah" title="Permalink to this heading">#</a></h2>
+<section id="ph-tanah">
+<h3>1. pH Tanah<a class="headerlink" href="#ph-tanah" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Skala pH (0–14)</p></li>
+<li><p>Deskripsi:** Tingkat keasaman atau kebasaan tanah. pH optimal untuk pertanian berkisar <strong>6,0–7,5</strong>.</p></li>
+<li><p>Nilai Subur: 6,0 – 7,5</p></li>
+<li><p>Nilai Tidak Subur: 3,5 – 5,4 (asam kuat) atau 7,6 – 9,0 (basa kuat)</p></li>
+</ul>
+</section>
+<section id="n-total">
+<h3>2. N Total (%)<a class="headerlink" href="#n-total" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Persen (%)</p></li>
+<li><p>Deskripsi: Kandungan nitrogen total dalam tanah. Nitrogen penting untuk pertumbuhan vegetatif tanaman.</p></li>
+<li><p>Nilai Subur: 0,21 – 0,50%</p></li>
+<li><p>Nilai Tidak Subur: 0,01 – 0,20%</p></li>
+</ul>
+</section>
+<section id="p-tersedia-ppm">
+<h3>3. P Tersedia (ppm)<a class="headerlink" href="#p-tersedia-ppm" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Parts per million (ppm)</p></li>
+<li><p>Deskripsi: Fosfor tersedia yang dapat diserap tanaman, berperan dalam pembentukan akar dan buah.</p></li>
+<li><p>Nilai Subur: 15 – 60 ppm</p></li>
+<li><p>Nilai Tidak Subur: 1 – 14 ppm</p></li>
+</ul>
+</section>
+<section id="k-tersedia-meq-100g">
+<h3>4. K Tersedia (meq/100g)<a class="headerlink" href="#k-tersedia-meq-100g" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Milliequivalent per 100 gram tanah</p></li>
+<li><p>Deskripsi: Kalium dalam tanah yang penting untuk ketahanan tanaman dan fotosintesis.</p></li>
+<li><p>Nilai Subur: 0,30 – 0,80 meq/100g</p></li>
+<li><p>Nilai Tidak Subur: 0,05 – 0,29 meq/100g</p></li>
+</ul>
+</section>
+<section id="c-organik">
+<h3>5. C Organik (%)<a class="headerlink" href="#c-organik" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Persen (%)</p></li>
+<li><p>Deskripsi: Kandungan karbon organik sebagai indikator utama kesuburan dan kesehatan biologi tanah.</p></li>
+<li><p>Nilai Subur: 2,0 – 5,0%</p></li>
+<li><p>Nilai Tidak Subur: 0,2 – 1,9%</p></li>
+</ul>
+</section>
+<section id="ktk-meq-100g">
+<h3>6. KTK (meq/100g)<a class="headerlink" href="#ktk-meq-100g" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Milliequivalent per 100 gram tanah</p></li>
+<li><p>Deskripsi: Kapasitas Tukar Kation, yaitu kemampuan tanah mengikat dan menyediakan unsur hara. Semakin tinggi, semakin subur.</p></li>
+<li><p>Nilai Subur: 20 – 45 meq/100g</p></li>
+<li><p>Nilai Tidak Subur: 5 – 19 meq/100g</p></li>
+</ul>
+</section>
+<section id="kejenuhan-basa">
+<h3>7. Kejenuhan Basa (%)<a class="headerlink" href="#kejenuhan-basa" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Persen (%)</p></li>
+<li><p>Deskripsi: Persentase kation basa (Ca, Mg, K, Na) dari total KTK. Menggambarkan kualitas kesuburan kimia tanah.</p></li>
+<li><p>Nilai Subur: 60 – 100%</p></li>
+<li><p>Nilai Tidak Subur: 10 – 59%</p></li>
+</ul>
+</section>
+<section id="tekstur-tanah">
+<h3>8. Tekstur Tanah<a class="headerlink" href="#tekstur-tanah" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tipe: Kategorikal</p></li>
+<li><p>Deskripsi: Komposisi partikel tanah yang memengaruhi drainase, aerasi, dan kemampuan menahan air.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Tekstur yang Umum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Subur</p></td>
+<td><p>Lempung, Lempung Berpasir, Lempung Berliat</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tidak Subur</p></td>
+<td><p>Pasir, Liat, Debu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="kadar-air">
+<h3>9. Kadar Air (%)<a class="headerlink" href="#kadar-air" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Persen (%)</p></li>
+<li><p>Deskripsi: Persentase kadar air dalam tanah. Kondisi terlalu kering atau terlalu basah dapat merugikan tanaman.</p></li>
+<li><p>Nilai Subur: 25 – 45%</p></li>
+<li><p>Nilai Tidak Subur: 5 – 20% (terlalu kering) atau 55 – 75% (terlalu basah)</p></li>
+</ul>
+</section>
+<section id="bulk-density-g-cm3">
+<h3>10. Bulk Density (g/cm³)<a class="headerlink" href="#bulk-density-g-cm3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Satuan: Gram per sentimeter kubik</p></li>
+<li><p>Deskripsi: Kerapatan tanah. Nilai tinggi menunjukkan tanah padat, aerasi buruk, dan sulit ditembus akar.</p></li>
+<li><p>Nilai Subur: 0,9 – 1,2 g/cm³</p></li>
+<li><p>Nilai Tidak Subur: 1,4 – 1,9 g/cm³</p></li>
+</ul>
+</section>
+</section>
+<section id="definisi-kelas">
+<h2>Definisi Kelas<a class="headerlink" href="#definisi-kelas" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Subur</p></td>
+<td><p>Tanah dengan kondisi fisik, kimia, dan biologi yang optimal untuk pertumbuhan tanaman. Ditandai dengan pH seimbang, unsur hara cukup, tekstur ideal, dan struktur tanah yang baik.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tidak Subur</p></td>
+<td><p>Tanah dengan kondisi pembatas seperti pH ekstrem, kekurangan unsur hara, tekstur buruk, kadar air tidak ideal, atau kerapatan tinggi.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="distribusi-kelas">
+<h2>Distribusi Kelas<a class="headerlink" href="#distribusi-kelas" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Jumlah Sampel</p></th>
+<th class="head"><p>Persentase</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Subur</p></td>
+<td><p>1.000</p></td>
+<td><p>50%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tidak Subur</p></td>
+<td><p>1.000</p></td>
+<td><p>50%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p><strong>2.000</strong></p></td>
+<td><p><strong>100%</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -567,6 +745,7 @@ Dataset dibagi menjadi:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Data Kesuburan Tanah</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-analisis-data-menggunakan-knn">1. Lakukan analisis data menggunakan KNN</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-pemrosesan-data">2. Lakukan pemrosesan data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-yang-dilakukan">Langkah-langkah yang dilakukan:</a></li>
@@ -574,6 +753,27 @@ Dataset dibagi menjadi:</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-matriks-evaluasi">3. Hitung matriks evaluasi</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-klasifikasi-kesuburan-tanah">Dataset Klasifikasi Kesuburan Tanah</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-kesuburan-tanah">Penjelasan Fitur Kesuburan Tanah</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ph-tanah">1. pH Tanah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-total">2. N Total (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-tersedia-ppm">3. P Tersedia (ppm)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-tersedia-meq-100g">4. K Tersedia (meq/100g)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-organik">5. C Organik (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ktk-meq-100g">6. KTK (meq/100g)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kejenuhan-basa">7. Kejenuhan Basa (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tekstur-tanah">8. Tekstur Tanah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kadar-air">9. Kadar Air (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-density-g-cm3">10. Bulk Density (g/cm³)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas">Definisi Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas">Distribusi Kelas</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
