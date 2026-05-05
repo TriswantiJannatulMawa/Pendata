@@ -399,6 +399,20 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-theorema">Bayesian Theorema</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayesian">Klasifikasi Naive Bayesian</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes-dengan-knime">Klasifikasi Naive Bayes dengan KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-awal">Data awal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-knime">Alur KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah-Langkah</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-excel-reader">1. Import Data (Excel Reader)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-data-kosong-missing-value">2. Penanganan Data Kosong (Missing Value)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-table-partitioner">3. Pembagian Data (Table Partitioner)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-data-concatenate">4. Penggabungan Data (Concatenate)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-dengan-python-python-script">5. Pemrosesan dengan Python (Python Script)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-scorer">6. Evaluasi Model (Scorer)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -491,6 +505,46 @@ g(x, \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma}} \; e^{-\frac{(x - \mu)^2}{2\sigm
 P(X \mid C_i) = g(x_k, \mu_{C_i}, \sigma_{C_i})
 \]</div>
 </section>
+<section id="klasifikasi-naive-bayes-dengan-knime">
+<h2>Klasifikasi Naive Bayes dengan KNIME<a class="headerlink" href="#klasifikasi-naive-bayes-dengan-knime" title="Permalink to this heading">#</a></h2>
+<section id="data-awal">
+<h3>Data awal<a class="headerlink" href="#data-awal" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="alur-knime">
+<h3>Alur KNIME<a class="headerlink" href="#alur-knime" title="Permalink to this heading">#</a></h3>
+<p><img alt="alt text" src="_images/foto8.png" /></p>
+</section>
+<section id="langkah-langkah">
+<h3>Langkah-Langkah<a class="headerlink" href="#langkah-langkah" title="Permalink to this heading">#</a></h3>
+<section id="import-data-excel-reader">
+<h4>1. Import Data (Excel Reader)<a class="headerlink" href="#import-data-excel-reader" title="Permalink to this heading">#</a></h4>
+<p>data awal
+<img alt="alt text" src="_images/image3.png" /></p>
+</section>
+<section id="penanganan-data-kosong-missing-value">
+<h4>2. Penanganan Data Kosong (Missing Value)<a class="headerlink" href="#penanganan-data-kosong-missing-value" title="Permalink to this heading">#</a></h4>
+<p><img alt="alt text" src="_images/foto9.png" />
+<img alt="alt text" src="_images/image.png" /></p>
+</section>
+<section id="pembagian-data-table-partitioner">
+<h4>3. Pembagian Data (Table Partitioner)<a class="headerlink" href="#pembagian-data-table-partitioner" title="Permalink to this heading">#</a></h4>
+<p><img alt="alt text" src="_images/foto10.png" /></p>
+</section>
+<section id="penggabungan-data-concatenate">
+<h4>4. Penggabungan Data (Concatenate)<a class="headerlink" href="#penggabungan-data-concatenate" title="Permalink to this heading">#</a></h4>
+<p>Node ini digunakan untuk menggabungkan kembali data dari beberapa proses sebelumnya. Biasanya digunakan jika terdapat pemisahan data atau hasil sementara yang perlu disatukan kembali sebelum proses berikutnya.</p>
+</section>
+<section id="pemrosesan-dengan-python-python-script">
+<h4>5. Pemrosesan dengan Python (Python Script)<a class="headerlink" href="#pemrosesan-dengan-python-python-script" title="Permalink to this heading">#</a></h4>
+<p><img alt="alt text" src="_images/foto11.png" /></p>
+</section>
+<section id="evaluasi-model-scorer">
+<h4>6. Evaluasi Model (Scorer)<a class="headerlink" href="#evaluasi-model-scorer" title="Permalink to this heading">#</a></h4>
+<p><img alt="alt text" src="_images/foto12.png" />
+<img alt="alt text" src="_images/foto13.png" /></p>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -557,6 +611,20 @@ P(X \mid C_i) = g(x_k, \mu_{C_i}, \sigma_{C_i})
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-theorema">Bayesian Theorema</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayesian">Klasifikasi Naive Bayesian</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes-dengan-knime">Klasifikasi Naive Bayes dengan KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-awal">Data awal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-knime">Alur KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah-Langkah</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-excel-reader">1. Import Data (Excel Reader)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-data-kosong-missing-value">2. Penanganan Data Kosong (Missing Value)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-table-partitioner">3. Pembagian Data (Table Partitioner)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-data-concatenate">4. Penggabungan Data (Concatenate)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-dengan-python-python-script">5. Pemrosesan dengan Python (Python Script)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-scorer">6. Evaluasi Model (Scorer)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
