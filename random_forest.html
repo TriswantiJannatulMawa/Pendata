@@ -391,13 +391,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-random-forest-menggunakan-knime">Analisis Random Forest menggunakan KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exel-reader">1. Exel Reader</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">2. Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">3. Table Partitioner</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-lenear">4. Random Forest Lenear</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-ensemble-statistic">5. Tree Ensemble Statistic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-prediction">6. Random Forest Prediction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">7. Scorer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">2. Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-lenear">3. Random Forest Lenear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-ensemble-statistic">4. Tree Ensemble Statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-prediction">5. Random Forest Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">6. Scorer</a></li>
 </ul>
 </li>
 </ul>
@@ -415,27 +414,83 @@ document.write(`
 <h1>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h1>
 <section id="analisis-random-forest-menggunakan-knime">
 <h2>Analisis Random Forest menggunakan KNIME<a class="headerlink" href="#analisis-random-forest-menggunakan-knime" title="Permalink to this heading">#</a></h2>
-<p><img alt="alt text" src="_images/image9.png" /></p>
-<section id="exel-reader">
-<h3>1. Exel Reader<a class="headerlink" href="#exel-reader" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="missing-value">
-<h3>2. Missing Value<a class="headerlink" href="#missing-value" title="Permalink to this heading">#</a></h3>
+<p><img alt="alt text" src="_images/image18.png" /></p>
+<section id="csv-reader">
+<h3>1. CSV Reader<a class="headerlink" href="#csv-reader" title="Permalink to this heading">#</a></h3>
+<p>Data yang biasanya masuk di sini berisi:</p>
+<ul class="simple">
+<li><p>Customer ID</p></li>
+<li><p>Demografi pelanggan (gender, usia, dll.)</p></li>
+<li><p>Data layanan (internet, contract, payment method)</p></li>
+<li><p>Label target: Churn (Yes/No)</p></li>
+</ul>
+<p><img alt="alt text" src="_images/image10.png" /></p>
 </section>
 <section id="table-partitioner">
-<h3>3. Table Partitioner<a class="headerlink" href="#table-partitioner" title="Permalink to this heading">#</a></h3>
+<h3>2. Table Partitioner<a class="headerlink" href="#table-partitioner" title="Permalink to this heading">#</a></h3>
+<p>Membagi data menjadi dua bagian:</p>
+<ul class="simple">
+<li><p>Data training (misalnya 70)</p></li>
+<li><p>Data testing (30%)</p></li>
+</ul>
+<p><img alt="alt text" src="_images/foto10.png" /></p>
 </section>
 <section id="random-forest-lenear">
-<h3>4. Random Forest Lenear<a class="headerlink" href="#random-forest-lenear" title="Permalink to this heading">#</a></h3>
+<h3>3. Random Forest Lenear<a class="headerlink" href="#random-forest-lenear" title="Permalink to this heading">#</a></h3>
+<p>Proses training model machine learning menggunakan algoritma Random Forest.</p>
+<p>Cara kerjanya:</p>
+<ul class="simple">
+<li><p>Membuat banyak decision tree dari data training</p></li>
+<li><p>Setiap tree belajar pola berbeda dari fitur customer</p></li>
+<li><p>Hasil akhir adalah gabungan voting dari semua tree</p></li>
+</ul>
+<p><img alt="alt text" src="_images/image11.png" />
+<img alt="alt text" src="_images/image12.png" /></p>
 </section>
 <section id="tree-ensemble-statistic">
-<h3>5. Tree Ensemble Statistic<a class="headerlink" href="#tree-ensemble-statistic" title="Permalink to this heading">#</a></h3>
+<h3>4. Tree Ensemble Statistic<a class="headerlink" href="#tree-ensemble-statistic" title="Permalink to this heading">#</a></h3>
+<p>Menganalisis model yang sudah dilatih.
+Biasanya menghasilkan:</p>
+<ul class="simple">
+<li><p>Tingkat pentingnya fitur (feature importance)</p></li>
+<li><p>Struktur ensemble tree</p></li>
+<li><p>Statistik performa internal model</p></li>
+</ul>
+<p>Pada kasus churn, node ini membantu mengetahui:
+fitur apa yang paling mempengaruhi pelanggan berhenti (misalnya contract type, monthly charges, dll.)</p>
+<p><img alt="alt text" src="_images/image13.png" /></p>
 </section>
 <section id="random-forest-prediction">
-<h3>6. Random Forest Prediction<a class="headerlink" href="#random-forest-prediction" title="Permalink to this heading">#</a></h3>
+<h3>5. Random Forest Prediction<a class="headerlink" href="#random-forest-prediction" title="Permalink to this heading">#</a></h3>
+<p>Melakukan prediksi pada data testing.</p>
+<p>Prosesnya:</p>
+<ul class="simple">
+<li><p>Model Random Forest yang sudah dilatih digunakan</p></li>
+<li><p>Data testing dimasukkan</p></li>
+<li><p>Output berupa:</p></li>
+<li><p>Prediksi churn (Yes/No)</p></li>
+<li><p>Probabilitas churn</p></li>
+</ul>
+<p>Hasil ini menunjukkan pelanggan mana yang diprediksi akan berhenti berlangganan.</p>
+<p><img alt="alt text" src="_images/image14.png" /></p>
 </section>
 <section id="scorer">
-<h3>7. Scorer<a class="headerlink" href="#scorer" title="Permalink to this heading">#</a></h3>
+<h3>6. Scorer<a class="headerlink" href="#scorer" title="Permalink to this heading">#</a></h3>
+<p>Output yang dihasilkan:</p>
+<ul class="simple">
+<li><p>Accuracy (akurasi model)</p></li>
+<li><p>Confusion matrix (TP, TN, FP, FN)</p></li>
+<li><p>Precision, recall, dan F1-score (jika diaktifkan)</p></li>
+</ul>
+<p>Pada kasus churn:</p>
+<ul class="simple">
+<li><p>TP: pelanggan churn yang berhasil diprediksi churn</p></li>
+<li><p>TN: pelanggan tidak churn yang benar diprediksi tidak churn</p></li>
+<li><p>FP/FN: kesalahan prediksi</p></li>
+</ul>
+<p><img alt="alt text" src="_images/image15.png" />
+<img alt="alt text" src="_images/image16.png" />
+<img alt="alt text" src="_images/image17.png" /></p>
 </section>
 </section>
 </section>
@@ -496,13 +551,12 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-random-forest-menggunakan-knime">Analisis Random Forest menggunakan KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exel-reader">1. Exel Reader</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">2. Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">3. Table Partitioner</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-lenear">4. Random Forest Lenear</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-ensemble-statistic">5. Tree Ensemble Statistic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-prediction">6. Random Forest Prediction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">7. Scorer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">2. Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-lenear">3. Random Forest Lenear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-ensemble-statistic">4. Tree Ensemble Statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-prediction">5. Random Forest Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">6. Scorer</a></li>
 </ul>
 </li>
 </ul>
