@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Statistika &#8212; My sample book</title>
+    <title>Linear Regression &#8212; My sample book</title>
   
   
   
@@ -62,13 +62,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'naive_bayes';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'regresi_linear';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Decision tree" href="pohon_keputusan.html" />
-    <link rel="prev" title="Analisis Data Kesuburan Tanah" href="dataset_klarifikasi.html" />
+    <link rel="prev" title="Random Forest" href="random_forest.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -195,10 +192,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="information_gain.html">Information Gain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dataset_klarifikasi.html">Analisis Data Kesuburan Tanah</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">Statistika</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pohon_keputusan.html">Decision tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="random_forest.html">Random Forest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regresi_linear.html">Linear Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Regression</a></li>
 </ul>
 
     </div>
@@ -270,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnaive_bayes.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fregresi_linear.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/naive_bayes.ipynb" target="_blank"
+      <li><a href="_sources/regresi_linear.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Statistika</h1>
+    <h1>Linear Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,28 +391,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dan-prediksi">Klasifikasi dan Prediksi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi">1. Klasifikasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi">2. Prediksi</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes">Klasifikasi Naive Bayes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-theorema">Bayesian Theorema</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayesian">Klasifikasi Naive Bayesian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes-dengan-knime">Klasifikasi Naive Bayes dengan KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-knime">Alur KNIME</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah-Langkah</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-excel-reader">1. Import Data (Excel Reader)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-data-kosong-missing-value">2. Penanganan Data Kosong (Missing Value)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-table-partitioner">3. Pembagian Data (Table Partitioner)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-data-concatenate">4. Penggabungan Data (Concatenate)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-dengan-python-python-script">5. Pemrosesan dengan Python (Python Script)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-scorer">6. Evaluasi Model (Scorer)</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-geogebra">Menggunakan geogebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-manual-exel">Menghitung Manual Exel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-python-scaler">Menggunakan Python Scaler</a></li>
 </ul>
             </nav>
         </div>
@@ -427,127 +405,76 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="statistika">
-<h1>Statistika<a class="headerlink" href="#statistika" title="Permalink to this heading">#</a></h1>
-<section id="klasifikasi-dan-prediksi">
-<h2>Klasifikasi dan Prediksi<a class="headerlink" href="#klasifikasi-dan-prediksi" title="Permalink to this heading">#</a></h2>
-<section id="klasifikasi">
-<h3>1. Klasifikasi<a class="headerlink" href="#klasifikasi" title="Permalink to this heading">#</a></h3>
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
+<p>Proyek ini  digunakan untuk membuat analisis data menggunakan Regresi Linier</p>
 <ul class="simple">
-<li><p>Memprediksi label class (distrik/kontinu)</p></li>
-<li><p>Mengklasifikasi data(membangun model) didasarkan pada data training dan nilai label class dalam mengklasdifikasi atribut data baru</p></li>
+<li><p>membuat program menghitung koefisien regresi dengan  libarary dari sklearn from sklearn.linear_model import LinearRegression</p></li>
+<li><p>Menghitung secara analitik mencari koefisien regresi</p></li>
 </ul>
+<p>data
+<img alt="alt text" src="_images/gbr1.jpeg" /></p>
+<section id="menggunakan-geogebra">
+<h2>Menggunakan geogebra<a class="headerlink" href="#menggunakan-geogebra" title="Permalink to this heading">#</a></h2>
+<p>Langkah pertama dilakukan visualisasi data menggunakan GeoGebra. Data yang digunakan berupa pasangan titik koordinat
+A=(2,2)
+B=(4,3)
+C=(5,5)
+D=(3,4)
+E=(3,3)
+F=(4,5)
+G=(5,6)
+setelah itu membuat garis regresi linear terbaik berdasarkan data menggunakan <strong>FitLine({A,B,C,D,E,F,G})</strong></p>
+<p>Gambar grafik
+<img alt="alt text" src="_images/gbr2.png" /></p>
+<p>Dari grafik terlihat bahwa titik-titik data membentuk pola naik, sehingga menunjukkan hubungan positif antara variabel X dan Y.</p>
 </section>
-<section id="prediksi">
-<h3>2. Prediksi<a class="headerlink" href="#prediksi" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Memodelkan fungsi bernilai kontinu yaitu memprediksi nilai yang tidak diketahui</p></li>
-</ul>
+<section id="menghitung-manual-exel">
+<h2>Menghitung Manual Exel<a class="headerlink" href="#menghitung-manual-exel" title="Permalink to this heading">#</a></h2>
+<p>Setelah visualisasi dilakukan, langkah berikutnya adalah menghitung regresi linear secara manual</p>
+<ol class="arabic simple">
+<li><p>menghitung xy dengan x*y</p></li>
+<li><p>Menghitung x^2</p></li>
+<li><p>menghitung slope(b)</p></li>
+</ol>
+<p>menggunakan rumus biasa
+<img alt="alt text" src="_images/gbr5.png" /></p>
+<p>menggunakan matrik
+<img alt="alt text" src="_images/gbr4.png" /></p>
+<p>karna kita menghitung menggunakan exel maka perhitungannya menggunakan rumus biasa
+<img alt="alt text" src="_images/gbr3.png" /></p>
 </section>
-</section>
-<section id="klasifikasi-naive-bayes">
-<h2>Klasifikasi Naive Bayes<a class="headerlink" href="#klasifikasi-naive-bayes" title="Permalink to this heading">#</a></h2>
-<p>Naive Bayes adalah metode klasifikasi berbasis probabilitas yang menggunakan teorema Bayes untuk menentukan kelas dengan peluang terbesar, dengan asumsi setiap atribut saling independen.</p>
-</section>
-<section id="bayesian-theorema">
-<h2>Bayesian Theorema<a class="headerlink" href="#bayesian-theorema" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Dari training data X, posteriori probabilitas dari hypothesis H atau class, P(H|X), teorema Bayes:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-P(C \mid X) = \frac{P(X \mid C)\, P(C)}{P(X)}
-\]</div>
-<ul>
-<li><p>Dapat ditulis dengan:</p>
-<p><strong>posterior = likelihood × prior / evidence</strong></p>
-</li>
-<li><p>Prediksi X anggota C₂ jika dan hanya jika probabilitas P(C₂|X) paling tinggi di antara semua P(Cₖ|X) dari semua kelas k</p></li>
-</ul>
-</section>
-<section id="klasifikasi-naive-bayesian">
-<h2>Klasifikasi Naive Bayesian<a class="headerlink" href="#klasifikasi-naive-bayesian" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Perhatikan D adalah record training dan ditetapkan label-label kelasnya dan masing-masing record dinyatakan n atribut (n field) X = (x₁, x₂, …, xₙ)</p></li>
-<li><p>Misalkan terdapat m kelas C₁, C₂, …, Cₘ</p></li>
-<li><p>Klasifikasi adalah diperoleh maximum posteriori yaitu<br />
-maksimum P(Cᵢ | X)</p></li>
-<li><p>Ini dapat diperoleh dari teorema Bayes:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-P(C_i \mid X) = \frac{P(X \mid C_i)\,P(C_i)}{P(X)}
-\]</div>
-<ul class="simple">
-<li><p>Karena P(X) adalah konstan untuk semua kelas, hanya perlu memaksimumkan:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-P(C_i \mid X) = P(X \mid C_i)\,P(C_i)
-\]</div>
-</section>
-<section id="naive-bayes-classifier">
-<h2>Naive Bayes Classifier<a class="headerlink" href="#naive-bayes-classifier" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Diasumsikan: atribut dalam kondisi saling bebas (independent), yaitu tidak ada kebergantungan antara atribut-atribut:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-P(X \mid C_i) = \prod_{k=1}^{n} P(x_k \mid C_i) = P(x_1 \mid C_i) \times P(x_2 \mid C_i) \times \cdots \times P(x_n \mid C_i)
-\]</div>
-<ul class="simple">
-<li><p>Aₖ adalah categorical, P(xₖ|Cᵢ) adalah jumlah record dalam kelas Cᵢ yang memiliki nilai xₖ sama dengan Aₖ dibagi dengan jumlah record dalam Cᵢ dalam D</p></li>
-<li><p>Jika Aₖ bernilai kontinu, P(xₖ|Cᵢ) biasanya dihitung berdasarkan distribusi Gaussian dengan mean (μ) dan standar deviasi σ Dan P(xₖ|Cᵢ) adalah:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-g(x, \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma}} \; e^{-\frac{(x - \mu)^2}{2\sigma^2}}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-P(X \mid C_i) = g(x_k, \mu_{C_i}, \sigma_{C_i})
-\]</div>
-</section>
-<section id="klasifikasi-naive-bayes-dengan-knime">
-<h2>Klasifikasi Naive Bayes dengan KNIME<a class="headerlink" href="#klasifikasi-naive-bayes-dengan-knime" title="Permalink to this heading">#</a></h2>
-<section id="alur-knime">
-<h3>Alur KNIME<a class="headerlink" href="#alur-knime" title="Permalink to this heading">#</a></h3>
-<p><img alt="alt text" src="_images/foto8.png" /></p>
-</section>
-<section id="langkah-langkah">
-<h3>Langkah-Langkah<a class="headerlink" href="#langkah-langkah" title="Permalink to this heading">#</a></h3>
-<section id="import-data-excel-reader">
-<h4>1. Import Data (Excel Reader)<a class="headerlink" href="#import-data-excel-reader" title="Permalink to this heading">#</a></h4>
-<p>data awal
-<img alt="alt text" src="_images/image3.png" /></p>
-</section>
-<section id="penanganan-data-kosong-missing-value">
-<h4>2. Penanganan Data Kosong (Missing Value)<a class="headerlink" href="#penanganan-data-kosong-missing-value" title="Permalink to this heading">#</a></h4>
-<p>Pengecekan terhadap nilai yang kosong (missing value) untuk mengisi atau mengganti data yang kosong,dengan nilai rata-rata dan median.</p>
-<p><img alt="alt text" src="_images/foto9.png" />
-<img alt="alt text" src="_images/image.png" /></p>
-</section>
-<section id="pembagian-data-table-partitioner">
-<h4>3. Pembagian Data (Table Partitioner)<a class="headerlink" href="#pembagian-data-table-partitioner" title="Permalink to this heading">#</a></h4>
-<p>Membagi data menjadi dua bagian, yaitu data latih (training) dan data uji (testing).</p>
-<p><img alt="alt text" src="_images/foto10.png" /></p>
-</section>
-<section id="penggabungan-data-concatenate">
-<h4>4. Penggabungan Data (Concatenate)<a class="headerlink" href="#penggabungan-data-concatenate" title="Permalink to this heading">#</a></h4>
-<p>Node ini digunakan untuk menggabungkan kembali data dari beberapa proses sebelumnya. Biasanya digunakan jika terdapat pemisahan data atau hasil sementara yang perlu disatukan kembali sebelum proses berikutnya.</p>
-</section>
-<section id="pemrosesan-dengan-python-python-script">
-<h4>5. Pemrosesan dengan Python (Python Script)<a class="headerlink" href="#pemrosesan-dengan-python-python-script" title="Permalink to this heading">#</a></h4>
-<p>Melakukan proses analisis atau pemodelan menggunakan script Python, dengan menerapkan algoritma Naive Bayes untuk menghasilkan prediksi.</p>
-<p><img alt="alt text" src="_images/foto11.png" /></p>
-</section>
-<section id="evaluasi-model-scorer">
-<h4>6. Evaluasi Model (Scorer)<a class="headerlink" href="#evaluasi-model-scorer" title="Permalink to this heading">#</a></h4>
-<p>Langkah terakhir adalah mengevaluasi hasil model yang beerupa nilaiconfusion matrix.</p>
-<p><img alt="alt text" src="_images/foto12.png" />
-<img alt="alt text" src="_images/foto13.png" /></p>
-</section>
-</section>
+<section id="menggunakan-python-scaler">
+<h2>Menggunakan Python Scaler<a class="headerlink" href="#menggunakan-python-scaler" title="Permalink to this heading">#</a></h2>
+<p>Selain menggunakan GeoGebra dan Excel, regresi linear juga dapat dihitung menggunakan Python dengan library LinearRegression dari sklearn.linear_model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># data X dan Y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+
+<span class="c1"># membuat model regresi</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># training model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="c1"># menampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Slope :&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept :&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slope : 1.076923076923077
+Intercept : -8.881784197001252e-16
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -582,22 +509,13 @@ P(X \mid C_i) = g(x_k, \mu_{C_i}, \sigma_{C_i})
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="dataset_klarifikasi.html"
+       href="random_forest.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analisis Data Kesuburan Tanah</p>
+        <p class="prev-next-title">Random Forest</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="pohon_keputusan.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Decision tree</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -615,28 +533,9 @@ P(X \mid C_i) = g(x_k, \mu_{C_i}, \sigma_{C_i})
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dan-prediksi">Klasifikasi dan Prediksi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi">1. Klasifikasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi">2. Prediksi</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes">Klasifikasi Naive Bayes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-theorema">Bayesian Theorema</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayesian">Klasifikasi Naive Bayesian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes-dengan-knime">Klasifikasi Naive Bayes dengan KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-knime">Alur KNIME</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah-Langkah</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-excel-reader">1. Import Data (Excel Reader)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-data-kosong-missing-value">2. Penanganan Data Kosong (Missing Value)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-table-partitioner">3. Pembagian Data (Table Partitioner)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-data-concatenate">4. Penggabungan Data (Concatenate)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-dengan-python-python-script">5. Pemrosesan dengan Python (Python Script)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-scorer">6. Evaluasi Model (Scorer)</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-geogebra">Menggunakan geogebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-manual-exel">Menghitung Manual Exel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-python-scaler">Menggunakan Python Scaler</a></li>
 </ul>
   </nav></div>
 
