@@ -473,13 +473,13 @@ document.write(`
 </li>
 <li><p>Membagi data training dan testing</p>
 <p>Data dibagi menjadi 2 bagian yaitu:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> - Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.</p></li>
+</ul>
 <p>Data ini digunakan untuk melatih model agar mempelajari pola hubungan antara data masa lalu dan data yang akan datang.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> - Data Testing : Berisi data mulai 22 Desember 2014 dan seterusnya.
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Data Testing : Berisi data mulai 22 Desember 2014 dan seterusnya.</p></li>
+</ul>
 <p>Data ini tidak digunakan saat pelatihan model. Tujuannya adalah untuk menguji kemampuan model dalam memprediksi data yang belum pernah dilihat sebelumnya.</p>
 <p>Pembagian ini penting agar evaluasi model lebih objektif dan tidak hanya mengukur kemampuan model mengingat data lama.</p>
 </li>
@@ -512,6 +512,102 @@ document.write(`
 </tbody>
 </table>
 </div>
+</li>
+<li><p>Melatih model</p>
+<p>Pada tahap ini model mempelajari hubungan antara variabel target dan variabel input.Proses pelatihan ini menghasilkan model yang dapat digunakan untuk memprediksi nilai Demand pada masa mendatang.</p>
+</li>
+<li><p>Feature Importance</p>
+<p>Feature Importance digunakan untuk mengetahui fitur mana yang paling berpengaruh dalam proses prediksi.</p>
+<p>Misalnya diperoleh hasil:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Importance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lag_1</p></td>
+<td><p>0.40</p></td>
+</tr>
+<tr class="row-odd"><td><p>lag_7</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>0.15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Interpretasinya:</p>
+<p>lag_1 merupakan fitur yang paling sering digunakan model dalam membuat keputusan.
+lag_7 juga memiliki pengaruh yang cukup besar.
+Temperature tetap berpengaruh namun lebih kecil dibanding lag.</p>
+<p>Tahap ini membantu memahami informasi apa yang paling diperhatikan model.</p>
+</li>
+<li><p>Analisis SHAP</p>
+<p>SHAP (SHapley Additive exPlanations) digunakan untuk menjelaskan alasan di balik prediksi model.</p>
+<ul class="simple">
+<li><p>Membuat SHAP explainer :
+Explainer digunakan untuk menghitung kontribusi masing-masing fitur terhadap hasil prediksi.</p></li>
+<li><p>Summary Plot :
+Visualisasi ini menunjukkan fitur paling penting secara keseluruhan.</p></li>
+<li><p>Force plot :
+Menjelaskan satu prediksi tertentu, Sehingga dapat diketahui alasan mengapa model menghasilkan prediksi tersebut.</p></li>
+<li><p>Dependence plot :
+Digunakan untuk melihat hubungan antara suatu fitur dan dampaknya terhadap prediksi.</p></li>
+</ul>
+</li>
+<li><p>Melakukan Prediksi</p>
+<p>predictions = forecaster.predict(
+steps=10,
+exog=data_test[‘Temperature’]
+)</p>
+<p>Model digunakan untuk memprediksi kebutuhan listrik selama 10 hari ke depan.</p>
+<p>Input yang digunakan:</p>
+<ul class="simple">
+<li><p>hasil lag sebelumnya</p></li>
+<li><p>data suhu pada periode yang akan diprediksi</p></li>
+</ul>
+<p>contoh:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>Prediksi Demand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>22-12-2014</p></td>
+<td><p>52.300</p></td>
+</tr>
+<tr class="row-odd"><td><p>23-12-2014</p></td>
+<td><p>53.100</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Permutation Importance</p>
+<p>Metode ini mengukur pentingnya fitur dengan cara mengacak nilai suatu fitur.</p>
+<p>Langkah-langkah:</p>
+<p>a. Model dihitung performanya dalam kondisi normal.</p>
+<p>b. Nilai Temperature diacak.</p>
+<p>c. Performa model dihitung kembali.</p>
+</li>
+<li><p>Pertial Dependence Plot (PDP)</p>
+<p>PDP digunakan untuk melihat pengaruh rata-rata suatu fitur terhadap hasil prediksi. Berbeda dengan SHAP yang menjelaskan prediksi individu, PDP menjelaskan perilaku model secara umum.</p>
+<ul>
+<li><p>Temperature</p>
+<p>misal:</p>
+<p>Temperature 20°C → Demand 45.000</p>
+<p>Temperature 30°C → Demand 55.000</p>
+<p>Artinya semakin tinggi suhu, semakin tinggi kebutuhan listrik.</p>
+</li>
+<li><p>Lag_1</p>
+<p>lag_1 meningkat -&gt;
+Demand prediksi meningkat</p>
+<p>Hal ini menunjukkan bahwa konsumsi listrik hari sebelumnya memiliki hubungan positif dengan konsumsi listrik hari berikutnya.</p>
+</li>
+</ul>
 </li>
 </ol>
 </section>
