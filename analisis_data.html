@@ -395,6 +395,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jawab-pertanyaan">Jawab Pertanyaan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-prediksi-tentang-apa">1. Analisis prediksi tentang apa?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya-apa-saja-input-dan-outputnya">2. Bagaimana bentuk data trainingnya(apa saja input dan outputnya)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa itu lag?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a></li>
 </ul>
 </li>
 </ul>
@@ -425,6 +427,93 @@ document.write(`
 </section>
 <section id="bagaimana-bentuk-data-trainingnya-apa-saja-input-dan-outputnya">
 <h3>2. Bagaimana bentuk data trainingnya(apa saja input dan outputnya)<a class="headerlink" href="#bagaimana-bentuk-data-trainingnya-apa-saja-input-dan-outputnya" title="Permalink to this heading">#</a></h3>
+<p>Input menggunakan input(x) yang terdiri dari lag,selain itu juga ada variabel eksternal(exogenous) yaitu berupa suhu harian dan output(y) berisi nilai demand pada hari yang akan diprediksi</p>
+</section>
+<section id="apa-itu-lag">
+<h3>3. Apa itu lag?<a class="headerlink" href="#apa-itu-lag" title="Permalink to this heading">#</a></h3>
+<p>Lag adalah nilai historis (masa lalu) dari variabel target yang digunakan sebagai input model.</p>
+<p>Pada kode di halaman Skforecast Explainability menggunakan 7 lag yaitu data 7 hari sebelumnya untuk memprediksi hari berikutnya, dan Lag digunakan karena pada data time series, nilai masa lalu biasanya memengaruhi nilai masa depan.</p>
+</section>
+<section id="jelaskan-proses-analisis-yang-dilakukan">
+<h3>4. Jelaskan proses analisis yang dilakukan<a class="headerlink" href="#jelaskan-proses-analisis-yang-dilakukan" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Mengambil data</p>
+<p>data = fetch_dataset(name=”vic_electricity”)</p>
+<p>Pada tahap ini, dataset vic_electricity diambil dari library Skforecast. Dataset ini berisi data historis konsumsi listrik (Demand) dan suhu (Temperature) di wilayah Victoria, Australia.</p>
+<p>Tujuan tahap ini adalah menyediakan data yang akan digunakan untuk melatih dan menguji model prediksi. Data yang diperoleh masih berupa data deret waktu (time series) dengan indeks berupa tanggal dan waktu.</p>
+<p>Data utama yang digunakan yaitu:</p>
+<ul class="simple">
+<li><p>Demand : jumlah kebutuhan atau konsumsi listrik.</p></li>
+<li><p>Temperature : suhu lingkungan pada waktu tertentu.</p></li>
+</ul>
+</li>
+<li><p>Agregasi data menjadi harian</p>
+<p>Dataset asli memiliki frekuensi yang lebih kecil dari satu hari (misalnya per jam atau per setengah jam). Oleh karena itu dilakukan proses agregasi menjadi data harian.</p>
+<p>sebelum ke agregasi perlu dilakukan mengubah frekuensi data menjadi perhari,setelah itu dilakukan agregasi dengan menjumlahkan seluruh konsumsi listrik dalam 1 harinya sehingga diperoleh total kebutuhan listrik harian. Dilanjut dengan menghitung rata-rata suhu agar hasil agregasi ini membuat data lebih mudah digunakan untuk prediksi kebutuhan listrik harian.</p>
+<p>contoh</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>Demand</p></th>
+<th class="head"><p>Temperature</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01-01-2014</p></td>
+<td><p>52000</p></td>
+<td><p>25.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>02-01-2014</p></td>
+<td><p>54800</p></td>
+<td><p>26.1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Membagi data training dan testing</p>
+<p>Data dibagi menjadi 2 bagian yaitu:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> - Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.
+</pre></div>
+</div>
+<p>Data ini digunakan untuk melatih model agar mempelajari pola hubungan antara data masa lalu dan data yang akan datang.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> - Data Testing : Berisi data mulai 22 Desember 2014 dan seterusnya.
+</pre></div>
+</div>
+<p>Data ini tidak digunakan saat pelatihan model. Tujuannya adalah untuk menguji kemampuan model dalam memprediksi data yang belum pernah dilihat sebelumnya.</p>
+<p>Pembagian ini penting agar evaluasi model lebih objektif dan tidak hanya mengukur kemampuan model mengingat data lama.</p>
+</li>
+<li><p>Membuat Model Forecasting</p>
+<p>ForecasterRecursive adalah kelas dari Skforecast yang digunakan untuk melakukan forecasting (peramalan) time series menggunakan model machine learning.</p>
+<p>Masalahnya, algoritma machine learning seperti LightGBM tidak memahami konsep waktu secara langsung.</p>
+<p>Karena itu, ForecasterRecursive bertugas mengubah data time series menjadi format yang bisa dipahami oleh LightGBM.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>lag_1</p></th>
+<th class="head"><p>lag_2</p></th>
+<th class="head"><p>lag_3</p></th>
+<th class="head"><p>lag_4</p></th>
+<th class="head"><p>lag_5</p></th>
+<th class="head"><p>lag_6</p></th>
+<th class="head"><p>lag_7</p></th>
+<th class="head"><p>Target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>145</p></td>
+<td><p>135</p></td>
+<td><p>140</p></td>
+<td><p>130</p></td>
+<td><p>110</p></td>
+<td><p>120</p></td>
+<td><p>100</p></td>
+<td><p>150</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
 </section>
 </section>
 </section>
@@ -487,6 +576,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jawab-pertanyaan">Jawab Pertanyaan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-prediksi-tentang-apa">1. Analisis prediksi tentang apa?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya-apa-saja-input-dan-outputnya">2. Bagaimana bentuk data trainingnya(apa saja input dan outputnya)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa itu lag?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a></li>
 </ul>
 </li>
 </ul>
