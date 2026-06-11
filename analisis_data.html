@@ -396,21 +396,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-prediksi-tentang-apa">1. Analisis prediksi tentang apa?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya-apa-saja-input-dan-outputnya">2. Bagaimana bentuk data trainingnya(apa saja input dan outputnya)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa itu lag?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data">1. Mengambil data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-data-menjadi-harian">2. Agregasi data menjadi harian</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-data-training-dan-testing">3. Membagi data training dan testing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-model-forecasting">4. Membuat Model Forecasting</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-model">5. Melatih model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">6. Feature Importance</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-shap">7. Analisis SHAP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-prediksi">8. Melakukan Prediksi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation-importance">9. Permutation Importance</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertial-dependence-plot-pdp">10. Pertial Dependence Plot (PDP)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a></li>
 </ul>
 </li>
 </ul>
@@ -450,8 +436,8 @@ document.write(`
 </section>
 <section id="jelaskan-proses-analisis-yang-dilakukan">
 <h3>4. Jelaskan proses analisis yang dilakukan<a class="headerlink" href="#jelaskan-proses-analisis-yang-dilakukan" title="Permalink to this heading">#</a></h3>
-<section id="mengambil-data">
-<h4>1. Mengambil data<a class="headerlink" href="#mengambil-data" title="Permalink to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Mengambil data</p>
 <p>data = fetch_dataset(name=”vic_electricity”)</p>
 <p>Pada tahap ini, dataset vic_electricity diambil dari library Skforecast. Dataset ini berisi data historis konsumsi listrik (Demand) dan suhu (Temperature) di wilayah Victoria, Australia.</p>
 <p>Tujuan tahap ini adalah menyediakan data yang akan digunakan untuk melatih dan menguji model prediksi. Data yang diperoleh masih berupa data deret waktu (time series) dengan indeks berupa tanggal dan waktu.</p>
@@ -460,9 +446,8 @@ document.write(`
 <li><p>Demand : jumlah kebutuhan atau konsumsi listrik.</p></li>
 <li><p>Temperature : suhu lingkungan pada waktu tertentu.</p></li>
 </ul>
-</section>
-<section id="agregasi-data-menjadi-harian">
-<h4>2. Agregasi data menjadi harian<a class="headerlink" href="#agregasi-data-menjadi-harian" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Agregasi data menjadi harian</p>
 <p>Dataset asli memiliki frekuensi yang lebih kecil dari satu hari (misalnya per jam atau per setengah jam). Oleh karena itu dilakukan proses agregasi menjadi data harian.</p>
 <p>sebelum ke agregasi perlu dilakukan mengubah frekuensi data menjadi perhari,setelah itu dilakukan agregasi dengan menjumlahkan seluruh konsumsi listrik dalam 1 harinya sehingga diperoleh total kebutuhan listrik harian. Dilanjut dengan menghitung rata-rata suhu agar hasil agregasi ini membuat data lebih mudah digunakan untuk prediksi kebutuhan listrik harian.</p>
 <p>contoh</p>
@@ -485,9 +470,8 @@ document.write(`
 </tbody>
 </table>
 </div>
-</section>
-<section id="membagi-data-training-dan-testing">
-<h4>3. Membagi data training dan testing<a class="headerlink" href="#membagi-data-training-dan-testing" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Membagi data training dan testing</p>
 <p>Data dibagi menjadi 2 bagian yaitu:</p>
 <ul class="simple">
 <li><p>Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.</p></li>
@@ -498,9 +482,8 @@ document.write(`
 </ul>
 <p>Data ini tidak digunakan saat pelatihan model. Tujuannya adalah untuk menguji kemampuan model dalam memprediksi data yang belum pernah dilihat sebelumnya.</p>
 <p>Pembagian ini penting agar evaluasi model lebih objektif dan tidak hanya mengukur kemampuan model mengingat data lama.</p>
-</section>
-<section id="membuat-model-forecasting">
-<h4>4. Membuat Model Forecasting<a class="headerlink" href="#membuat-model-forecasting" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Membuat Model Forecasting</p>
 <p>ForecasterRecursive adalah kelas dari Skforecast yang digunakan untuk melakukan forecasting (peramalan) time series menggunakan model machine learning.</p>
 <p>Masalahnya, algoritma machine learning seperti LightGBM tidak memahami konsep waktu secara langsung.</p>
 <p>Karena itu, ForecasterRecursive bertugas mengubah data time series menjadi format yang bisa dipahami oleh LightGBM.</p>
@@ -529,13 +512,11 @@ document.write(`
 </tbody>
 </table>
 </div>
-</section>
-<section id="melatih-model">
-<h4>5. Melatih model<a class="headerlink" href="#melatih-model" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Melatih model</p>
 <p>Pada tahap ini model mempelajari hubungan antara variabel target dan variabel input.Proses pelatihan ini menghasilkan model yang dapat digunakan untuk memprediksi nilai Demand pada masa mendatang.</p>
-</section>
-<section id="feature-importance">
-<h4>6. Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Feature Importance</p>
 <p>Feature Importance digunakan untuk mengetahui fitur mana yang paling berpengaruh dalam proses prediksi.</p>
 <p>Misalnya diperoleh hasil:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -562,10 +543,8 @@ document.write(`
 lag_7 juga memiliki pengaruh yang cukup besar.
 Temperature tetap berpengaruh namun lebih kecil dibanding lag.</p>
 <p>Tahap ini membantu memahami informasi apa yang paling diperhatikan model.</p>
-</section>
-</section>
-<section id="analisis-shap">
-<h3>7. Analisis SHAP<a class="headerlink" href="#analisis-shap" title="Permalink to this heading">#</a></h3>
+</li>
+<li><p>Analisis SHAP</p>
 <p>SHAP (SHapley Additive exPlanations) digunakan untuk menjelaskan alasan di balik prediksi model.</p>
 <ul class="simple">
 <li><p>Membuat SHAP explainer :
@@ -577,14 +556,12 @@ Menjelaskan satu prediksi tertentu, Sehingga dapat diketahui alasan mengapa mode
 <li><p>Dependence plot :
 Digunakan untuk melihat hubungan antara suatu fitur dan dampaknya terhadap prediksi.</p></li>
 </ul>
-<section id="melakukan-prediksi">
-<h4>8. Melakukan Prediksi<a class="headerlink" href="#melakukan-prediksi" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>predictions = forecaster.predict(
+</li>
+<li><p>Melakukan Prediksi</p>
+<p>predictions = forecaster.predict(
 steps=10,
-exog=data_test[&#39;Temperature&#39;]
-)
-</pre></div>
-</div>
+exog=data_test[‘Temperature’]
+)</p>
 <p>Model digunakan untuk memprediksi kebutuhan listrik selama 10 hari ke depan.</p>
 <p>Input yang digunakan:</p>
 <ul class="simple">
@@ -608,31 +585,31 @@ exog=data_test[&#39;Temperature&#39;]
 </tbody>
 </table>
 </div>
-</section>
-<section id="permutation-importance">
-<h4>9. Permutation Importance<a class="headerlink" href="#permutation-importance" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Permutation Importance</p>
 <p>Metode ini mengukur pentingnya fitur dengan cara mengacak nilai suatu fitur.</p>
 <p>Langkah-langkah:</p>
 <p>a. Model dihitung performanya dalam kondisi normal.</p>
 <p>b. Nilai Temperature diacak.</p>
 <p>c. Performa model dihitung kembali.</p>
-</section>
-<section id="pertial-dependence-plot-pdp">
-<h4>10. Pertial Dependence Plot (PDP)<a class="headerlink" href="#pertial-dependence-plot-pdp" title="Permalink to this heading">#</a></h4>
+</li>
+<li><p>Pertial Dependence Plot (PDP)</p>
 <p>PDP digunakan untuk melihat pengaruh rata-rata suatu fitur terhadap hasil prediksi. Berbeda dengan SHAP yang menjelaskan prediksi individu, PDP menjelaskan perilaku model secara umum.</p>
-<ul class="simple">
-<li><p>Temperature</p></li>
-</ul>
+<ul>
+<li><p>Temperature</p>
 <p>misal:</p>
 <p>Temperature 20°C → Demand 45.000</p>
 <p>Temperature 30°C → Demand 55.000</p>
 <p>Artinya semakin tinggi suhu, semakin tinggi kebutuhan listrik.</p>
-<ul class="simple">
-<li><p>Lag_1</p></li>
-</ul>
-<p>lag_1 meningkat -&gt; Demand prediksi meningkat</p>
+</li>
+<li><p>Lag_1</p>
+<p>lag_1 meningkat -&gt;
+Demand prediksi meningkat</p>
 <p>Hal ini menunjukkan bahwa konsumsi listrik hari sebelumnya memiliki hubungan positif dengan konsumsi listrik hari berikutnya.</p>
-</section>
+</li>
+</ul>
+</li>
+</ol>
 </section>
 </section>
 </section>
@@ -696,21 +673,7 @@ exog=data_test[&#39;Temperature&#39;]
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-prediksi-tentang-apa">1. Analisis prediksi tentang apa?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya-apa-saja-input-dan-outputnya">2. Bagaimana bentuk data trainingnya(apa saja input dan outputnya)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa itu lag?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data">1. Mengambil data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-data-menjadi-harian">2. Agregasi data menjadi harian</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-data-training-dan-testing">3. Membagi data training dan testing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-model-forecasting">4. Membuat Model Forecasting</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-model">5. Melatih model</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">6. Feature Importance</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-shap">7. Analisis SHAP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-prediksi">8. Melakukan Prediksi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation-importance">9. Permutation Importance</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertial-dependence-plot-pdp">10. Pertial Dependence Plot (PDP)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a></li>
 </ul>
 </li>
 </ul>
