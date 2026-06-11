@@ -452,7 +452,9 @@ document.write(`
 <h3>4. Jelaskan proses analisis yang dilakukan<a class="headerlink" href="#jelaskan-proses-analisis-yang-dilakukan" title="Permalink to this heading">#</a></h3>
 <section id="mengambil-data">
 <h4>1. Mengambil data<a class="headerlink" href="#mengambil-data" title="Permalink to this heading">#</a></h4>
-<p>data = fetch_dataset(name=”vic_electricity”)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data = fetch_dataset(name=&quot;vic_electricity&quot;)
+</pre></div>
+</div>
 <p>Pada tahap ini, dataset vic_electricity diambil dari library Skforecast. Dataset ini berisi data historis konsumsi listrik (Demand) dan suhu (Temperature) di wilayah Victoria, Australia.</p>
 <p>Tujuan tahap ini adalah menyediakan data yang akan digunakan untuk melatih dan menguji model prediksi. Data yang diperoleh masih berupa data deret waktu (time series) dengan indeks berupa tanggal dan waktu.</p>
 <p>Data utama yang digunakan yaitu:</p>
@@ -463,6 +465,13 @@ document.write(`
 </section>
 <section id="agregasi-data-menjadi-harian">
 <h4>2. Agregasi data menjadi harian<a class="headerlink" href="#agregasi-data-menjadi-harian" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data = data.resample(&#39;D&#39;).agg({
+    &#39;Demand&#39;: &#39;sum&#39;,
+    &#39;Temperature&#39;: &#39;mean&#39;
+})
+data.head(3)
+</pre></div>
+</div>
 <p>Dataset asli memiliki frekuensi yang lebih kecil dari satu hari (misalnya per jam atau per setengah jam). Oleh karena itu dilakukan proses agregasi menjadi data harian.</p>
 <p>sebelum ke agregasi perlu dilakukan mengubah frekuensi data menjadi perhari,setelah itu dilakukan agregasi dengan menjumlahkan seluruh konsumsi listrik dalam 1 harinya sehingga diperoleh total kebutuhan listrik harian. Dilanjut dengan menghitung rata-rata suhu agar hasil agregasi ini membuat data lebih mudah digunakan untuk prediksi kebutuhan listrik harian.</p>
 <p>contoh</p>
@@ -488,6 +497,10 @@ document.write(`
 </section>
 <section id="membagi-data-training-dan-testing">
 <h4>3. Membagi data training dan testing<a class="headerlink" href="#membagi-data-training-dan-testing" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data_train = data.loc[:&#39;2014-12-21&#39;]
+data_test = data.loc[&#39;2014-12-22&#39;:]
+</pre></div>
+</div>
 <p>Data dibagi menjadi 2 bagian yaitu:</p>
 <ul class="simple">
 <li><p>Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.</p></li>
@@ -501,6 +514,12 @@ document.write(`
 </section>
 <section id="membuat-model-forecasting">
 <h4>4. Membuat Model Forecasting<a class="headerlink" href="#membuat-model-forecasting" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>forecaster = ForecasterRecursive(
+    regressor=LGBMRegressor(random_state=123, verbose=-1),
+    lags=7
+)
+</pre></div>
+</div>
 <p>ForecasterRecursive adalah kelas dari Skforecast yang digunakan untuk melakukan forecasting (peramalan) time series menggunakan model machine learning.</p>
 <p>Masalahnya, algoritma machine learning seperti LightGBM tidak memahami konsep waktu secara langsung.</p>
 <p>Karena itu, ForecasterRecursive bertugas mengubah data time series menjadi format yang bisa dipahami oleh LightGBM.</p>
@@ -532,10 +551,19 @@ document.write(`
 </section>
 <section id="melatih-model">
 <h4>5. Melatih model<a class="headerlink" href="#melatih-model" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>forecaster.fit(
+    y=data_train[&#39;Demand&#39;],
+    exog=data_train[&#39;Temperature&#39;]
+)
+</pre></div>
+</div>
 <p>Pada tahap ini model mempelajari hubungan antara variabel target dan variabel input.Proses pelatihan ini menghasilkan model yang dapat digunakan untuk memprediksi nilai Demand pada masa mendatang.</p>
 </section>
 <section id="feature-importance">
 <h4>6. Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>forecaster.get_feature_importances()
+</pre></div>
+</div>
 <p>Feature Importance digunakan untuk mengetahui fitur mana yang paling berpengaruh dalam proses prediksi.</p>
 <p>Misalnya diperoleh hasil:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -558,14 +586,26 @@ document.write(`
 </table>
 </div>
 <p>Interpretasinya:</p>
-<p>lag_1 merupakan fitur yang paling sering digunakan model dalam membuat keputusan.
-lag_7 juga memiliki pengaruh yang cukup besar.
-Temperature tetap berpengaruh namun lebih kecil dibanding lag.</p>
+<ul class="simple">
+<li><p>lag_1 merupakan fitur yang paling sering digunakan model dalam membuat keputusan.</p></li>
+<li><p>lag_7 juga memiliki pengaruh yang cukup besar.</p></li>
+<li><p>Temperature tetap berpengaruh namun lebih kecil dibanding lag.</p></li>
+</ul>
 <p>Tahap ini membantu memahami informasi apa yang paling diperhatikan model.</p>
 </section>
 </section>
 <section id="analisis-shap">
 <h3>7. Analisis SHAP<a class="headerlink" href="#analisis-shap" title="Permalink to this heading">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>explainer = shap.TreeExplainer(forecaster.regressor)
+shap_values = explainer.shap_values(X_train)
+
+shap.summary_plot(
+    shap_values,
+    X_train,
+    plot_type=&quot;bar&quot;
+)
+</pre></div>
+</div>
 <p>SHAP (SHapley Additive exPlanations) digunakan untuk menjelaskan alasan di balik prediksi model.</p>
 <ul class="simple">
 <li><p>Membuat SHAP explainer :
@@ -611,6 +651,16 @@ exog=data_test[&#39;Temperature&#39;]
 </section>
 <section id="permutation-importance">
 <h4>9. Permutation Importance<a class="headerlink" href="#permutation-importance" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>r = permutation_importance(
+    estimator=forecaster.regressor,
+    X=X_train,
+    y=y_train,
+    n_repeats=3,
+    max_samples=0.5,
+    random_state=123
+)
+</pre></div>
+</div>
 <p>Metode ini mengukur pentingnya fitur dengan cara mengacak nilai suatu fitur.</p>
 <p>Langkah-langkah:</p>
 <p>a. Model dihitung performanya dalam kondisi normal.</p>
@@ -619,6 +669,19 @@ exog=data_test[&#39;Temperature&#39;]
 </section>
 <section id="pertial-dependence-plot-pdp">
 <h4>10. Pertial Dependence Plot (PDP)<a class="headerlink" href="#pertial-dependence-plot-pdp" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(figsize=(9,4))
+
+PartialDependenceDisplay.from_estimator(
+    estimator=forecaster.regressor,
+    X=X_train,
+    features=[&quot;Temperature&quot;, &quot;lag_1&quot;],
+    kind=&#39;both&#39;,
+    ax=ax
+)
+
+plt.show()
+</pre></div>
+</div>
 <p>PDP digunakan untuk melihat pengaruh rata-rata suatu fitur terhadap hasil prediksi. Berbeda dengan SHAP yang menjelaskan prediksi individu, PDP menjelaskan perilaku model secara umum.</p>
 <ul class="simple">
 <li><p>Temperature</p></li>
