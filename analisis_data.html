@@ -463,148 +463,175 @@ document.write(`
 </section>
 <section id="agregasi-data-menjadi-harian">
 <h4>2. Agregasi data menjadi harian<a class="headerlink" href="#agregasi-data-menjadi-harian" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Dataset asli memiliki frekuensi yang lebih kecil dari satu hari (misalnya per jam atau per setengah jam). Oleh karena itu dilakukan proses agregasi menjadi data harian.
-
-sebelum ke agregasi perlu dilakukan mengubah frekuensi data menjadi perhari,setelah itu dilakukan agregasi dengan menjumlahkan seluruh konsumsi listrik dalam 1 harinya sehingga diperoleh total kebutuhan listrik harian. Dilanjut dengan menghitung rata-rata suhu agar hasil agregasi ini membuat data lebih mudah digunakan untuk prediksi kebutuhan listrik harian.
-
-contoh
-| Tanggal    | Demand | Temperature |
-| ---------- | ------ | ----------- |
-| 01-01-2014 | 52000  | 25.3        |
-| 02-01-2014 | 54800  | 26.1        |
-</pre></div>
+<p>Dataset asli memiliki frekuensi yang lebih kecil dari satu hari (misalnya per jam atau per setengah jam). Oleh karena itu dilakukan proses agregasi menjadi data harian.</p>
+<p>sebelum ke agregasi perlu dilakukan mengubah frekuensi data menjadi perhari,setelah itu dilakukan agregasi dengan menjumlahkan seluruh konsumsi listrik dalam 1 harinya sehingga diperoleh total kebutuhan listrik harian. Dilanjut dengan menghitung rata-rata suhu agar hasil agregasi ini membuat data lebih mudah digunakan untuk prediksi kebutuhan listrik harian.</p>
+<p>contoh</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>Demand</p></th>
+<th class="head"><p>Temperature</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01-01-2014</p></td>
+<td><p>52000</p></td>
+<td><p>25.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>02-01-2014</p></td>
+<td><p>54800</p></td>
+<td><p>26.1</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="membagi-data-training-dan-testing">
 <h4>3. Membagi data training dan testing<a class="headerlink" href="#membagi-data-training-dan-testing" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Data dibagi menjadi 2 bagian yaitu:
-
-- Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.
-
-Data ini digunakan untuk melatih model agar mempelajari pola hubungan antara data masa lalu dan data yang akan datang.
-
-- Data Testing : Berisi data mulai 22 Desember 2014 dan seterusnya.
-
-Data ini tidak digunakan saat pelatihan model. Tujuannya adalah untuk menguji kemampuan model dalam memprediksi data yang belum pernah dilihat sebelumnya.
-
-Pembagian ini penting agar evaluasi model lebih objektif dan tidak hanya mengukur kemampuan model mengingat data lama.
-</pre></div>
-</div>
+<p>Data dibagi menjadi 2 bagian yaitu:</p>
+<ul class="simple">
+<li><p>Data Training : Berisi seluruh data sampai tanggal 21 Desember 2014.</p></li>
+</ul>
+<p>Data ini digunakan untuk melatih model agar mempelajari pola hubungan antara data masa lalu dan data yang akan datang.</p>
+<ul class="simple">
+<li><p>Data Testing : Berisi data mulai 22 Desember 2014 dan seterusnya.</p></li>
+</ul>
+<p>Data ini tidak digunakan saat pelatihan model. Tujuannya adalah untuk menguji kemampuan model dalam memprediksi data yang belum pernah dilihat sebelumnya.</p>
+<p>Pembagian ini penting agar evaluasi model lebih objektif dan tidak hanya mengukur kemampuan model mengingat data lama.</p>
 </section>
 <section id="membuat-model-forecasting">
 <h4>4. Membuat Model Forecasting<a class="headerlink" href="#membuat-model-forecasting" title="Permalink to this heading">#</a></h4>
 <p>ForecasterRecursive adalah kelas dari Skforecast yang digunakan untuk melakukan forecasting (peramalan) time series menggunakan model machine learning.</p>
 <p>Masalahnya, algoritma machine learning seperti LightGBM tidak memahami konsep waktu secara langsung.</p>
 <p>Karena itu, ForecasterRecursive bertugas mengubah data time series menjadi format yang bisa dipahami oleh LightGBM.</p>
-<p>| lag_1 | lag_2 | lag_3 | lag_4 | lag_5 | lag_6 | lag_7 | Target |
-| —– | —– | —– | —– | —– | —– | —– | —— |
-| 145   | 135   | 140   | 130   | 110   | 120   | 100   | 150    |</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>lag_1</p></th>
+<th class="head"><p>lag_2</p></th>
+<th class="head"><p>lag_3</p></th>
+<th class="head"><p>lag_4</p></th>
+<th class="head"><p>lag_5</p></th>
+<th class="head"><p>lag_6</p></th>
+<th class="head"><p>lag_7</p></th>
+<th class="head"><p>Target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>145</p></td>
+<td><p>135</p></td>
+<td><p>140</p></td>
+<td><p>130</p></td>
+<td><p>110</p></td>
+<td><p>120</p></td>
+<td><p>100</p></td>
+<td><p>150</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="melatih-model">
 <h4>5. Melatih model<a class="headerlink" href="#melatih-model" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Pada tahap ini model mempelajari hubungan antara variabel target dan variabel input.Proses pelatihan ini menghasilkan model yang dapat digunakan untuk memprediksi nilai Demand pada masa mendatang.
-</pre></div>
-</div>
+<p>Pada tahap ini model mempelajari hubungan antara variabel target dan variabel input.Proses pelatihan ini menghasilkan model yang dapat digunakan untuk memprediksi nilai Demand pada masa mendatang.</p>
 </section>
 <section id="feature-importance">
 <h4>6. Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Feature Importance digunakan untuk mengetahui fitur mana yang paling berpengaruh dalam proses prediksi.
-
-Misalnya diperoleh hasil:
-
-| Feature     | Importance |
-| ----------- | ---------- |
-| lag_1       | 0.40       |
-| lag_7       | 0.25       |
-| Temperature | 0.15       |
-
-Interpretasinya:
-
-lag_1 merupakan fitur yang paling sering digunakan model dalam membuat keputusan.
-lag_7 juga memiliki pengaruh yang cukup besar.
-Temperature tetap berpengaruh namun lebih kecil dibanding lag.
-
-Tahap ini membantu memahami informasi apa yang paling diperhatikan model.
-</pre></div>
+<p>Feature Importance digunakan untuk mengetahui fitur mana yang paling berpengaruh dalam proses prediksi.</p>
+<p>Misalnya diperoleh hasil:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Importance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lag_1</p></td>
+<td><p>0.40</p></td>
+</tr>
+<tr class="row-odd"><td><p>lag_7</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>0.15</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p>Interpretasinya:</p>
+<p>lag_1 merupakan fitur yang paling sering digunakan model dalam membuat keputusan.
+lag_7 juga memiliki pengaruh yang cukup besar.
+Temperature tetap berpengaruh namun lebih kecil dibanding lag.</p>
+<p>Tahap ini membantu memahami informasi apa yang paling diperhatikan model.</p>
 </section>
 </section>
 <section id="analisis-shap">
 <h3>7. Analisis SHAP<a class="headerlink" href="#analisis-shap" title="Permalink to this heading">#</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SHAP (SHapley Additive exPlanations) digunakan untuk menjelaskan alasan di balik prediksi model.
-
-- Membuat SHAP explainer : 
-Explainer digunakan untuk menghitung kontribusi masing-masing fitur terhadap hasil prediksi.
-
-- Summary Plot : 
-Visualisasi ini menunjukkan fitur paling penting secara keseluruhan.
-
-- Force plot :
-Menjelaskan satu prediksi tertentu, Sehingga dapat diketahui alasan mengapa model menghasilkan prediksi tersebut.
-
-- Dependence plot :
-Digunakan untuk melihat hubungan antara suatu fitur dan dampaknya terhadap prediksi.
-</pre></div>
-</div>
+<p>SHAP (SHapley Additive exPlanations) digunakan untuk menjelaskan alasan di balik prediksi model.</p>
+<ul class="simple">
+<li><p>Membuat SHAP explainer :
+Explainer digunakan untuk menghitung kontribusi masing-masing fitur terhadap hasil prediksi.</p></li>
+<li><p>Summary Plot :
+Visualisasi ini menunjukkan fitur paling penting secara keseluruhan.</p></li>
+<li><p>Force plot :
+Menjelaskan satu prediksi tertentu, Sehingga dapat diketahui alasan mengapa model menghasilkan prediksi tersebut.</p></li>
+<li><p>Dependence plot :
+Digunakan untuk melihat hubungan antara suatu fitur dan dampaknya terhadap prediksi.</p></li>
+</ul>
 <section id="melakukan-prediksi">
 <h4>8. Melakukan Prediksi<a class="headerlink" href="#melakukan-prediksi" title="Permalink to this heading">#</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>predictions = forecaster.predict(
 steps=10,
 exog=data_test[&#39;Temperature&#39;]
 )
-
-Model digunakan untuk memprediksi kebutuhan listrik selama 10 hari ke depan.
-
-Input yang digunakan:
-
-- hasil lag sebelumnya
-- data suhu pada periode yang akan diprediksi
-
-contoh:
-
-| Tanggal    | Prediksi Demand |
-| ---------- | --------------- |
-| 22-12-2014 | 52.300          |
-| 23-12-2014 | 53.100          |
 </pre></div>
+</div>
+<p>Model digunakan untuk memprediksi kebutuhan listrik selama 10 hari ke depan.</p>
+<p>Input yang digunakan:</p>
+<ul class="simple">
+<li><p>hasil lag sebelumnya</p></li>
+<li><p>data suhu pada periode yang akan diprediksi</p></li>
+</ul>
+<p>contoh:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>Prediksi Demand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>22-12-2014</p></td>
+<td><p>52.300</p></td>
+</tr>
+<tr class="row-odd"><td><p>23-12-2014</p></td>
+<td><p>53.100</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="permutation-importance">
 <h4>9. Permutation Importance<a class="headerlink" href="#permutation-importance" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Metode ini mengukur pentingnya fitur dengan cara mengacak nilai suatu fitur.
-
-Langkah-langkah:
-
-a. Model dihitung performanya dalam kondisi normal.
-
-b. Nilai Temperature diacak.
-
-c. Performa model dihitung kembali.
-</pre></div>
-</div>
+<p>Metode ini mengukur pentingnya fitur dengan cara mengacak nilai suatu fitur.</p>
+<p>Langkah-langkah:</p>
+<p>a. Model dihitung performanya dalam kondisi normal.</p>
+<p>b. Nilai Temperature diacak.</p>
+<p>c. Performa model dihitung kembali.</p>
 </section>
 <section id="pertial-dependence-plot-pdp">
 <h4>10. Pertial Dependence Plot (PDP)<a class="headerlink" href="#pertial-dependence-plot-pdp" title="Permalink to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>PDP digunakan untuk melihat pengaruh rata-rata suatu fitur terhadap hasil prediksi. Berbeda dengan SHAP yang menjelaskan prediksi individu, PDP menjelaskan perilaku model secara umum.
-
-- Temperature
-
-    misal:
-
-    Temperature 20°C → Demand 45.000
-
-    Temperature 30°C → Demand 55.000
-
-    Artinya semakin tinggi suhu, semakin tinggi kebutuhan listrik.
-
-- Lag_1
-
-    lag_1 meningkat -&gt;
-    Demand prediksi meningkat
-
-    Hal ini menunjukkan bahwa konsumsi listrik hari sebelumnya memiliki hubungan positif dengan konsumsi listrik hari berikutnya.
-</pre></div>
-</div>
+<p>PDP digunakan untuk melihat pengaruh rata-rata suatu fitur terhadap hasil prediksi. Berbeda dengan SHAP yang menjelaskan prediksi individu, PDP menjelaskan perilaku model secara umum.</p>
+<ul class="simple">
+<li><p>Temperature</p></li>
+</ul>
+<p>misal:</p>
+<p>Temperature 20°C → Demand 45.000</p>
+<p>Temperature 30°C → Demand 55.000</p>
+<p>Artinya semakin tinggi suhu, semakin tinggi kebutuhan listrik.</p>
+<ul class="simple">
+<li><p>Lag_1</p></li>
+</ul>
+<p>lag_1 meningkat -&gt; Demand prediksi meningkat</p>
+<p>Hal ini menunjukkan bahwa konsumsi listrik hari sebelumnya memiliki hubungan positif dengan konsumsi listrik hari berikutnya.</p>
 </section>
 </section>
 </section>
