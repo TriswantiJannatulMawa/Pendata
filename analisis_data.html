@@ -413,6 +413,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -683,20 +684,24 @@ plt.show()
 </pre></div>
 </div>
 <p>PDP digunakan untuk melihat pengaruh rata-rata suatu fitur terhadap hasil prediksi. Berbeda dengan SHAP yang menjelaskan prediksi individu, PDP menjelaskan perilaku model secara umum.</p>
-<ul class="simple">
-<li><p>Temperature</p></li>
-</ul>
+<ul>
+<li><p>Temperature</p>
 <p>misal:</p>
 <p>Temperature 20°C → Demand 45.000</p>
 <p>Temperature 30°C → Demand 55.000</p>
 <p>Artinya semakin tinggi suhu, semakin tinggi kebutuhan listrik.</p>
-<ul class="simple">
-<li><p>Lag_1</p></li>
-</ul>
+</li>
+<li><p>Lag_1</p>
 <p>lag_1 meningkat -&gt; Demand prediksi meningkat</p>
 <p>Hal ini menunjukkan bahwa konsumsi listrik hari sebelumnya memiliki hubungan positif dengan konsumsi listrik hari berikutnya.</p>
+</li>
+</ul>
 </section>
 </section>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Permalink to this heading">#</a></h2>
+<p>Secara keseluruhan, proses analisis dimulai dari pengambilan data konsumsi listrik dan suhu, kemudian data diubah menjadi data harian dan dibagi menjadi data training serta testing. Model LightGBM dilatih menggunakan 7 lag Demand dan Temperature untuk memprediksi kebutuhan listrik harian. Setelah model terbentuk, dilakukan analisis explainability menggunakan Feature Importance, SHAP, Permutation Importance, dan Partial Dependence Plot untuk memahami faktor-faktor yang memengaruhi hasil prediksi serta menjelaskan bagaimana model mengambil keputusan.</p>
 </section>
 </section>
 
@@ -776,6 +781,7 @@ plt.show()
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
   </nav></div>
 
