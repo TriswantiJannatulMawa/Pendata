@@ -453,17 +453,15 @@ document.write(`
 <section id="mengambil-data">
 <h4>1. Mengambil data<a class="headerlink" href="#mengambil-data" title="Permalink to this heading">#</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data = fetch_dataset(name=&quot;vic_electricity&quot;)
-
-Pada tahap ini, dataset vic_electricity diambil dari library Skforecast. Dataset ini berisi data historis konsumsi listrik (Demand) dan suhu (Temperature) di wilayah Victoria, Australia.
-
-Tujuan tahap ini adalah menyediakan data yang akan digunakan untuk melatih dan menguji model prediksi. Data yang diperoleh masih berupa data deret waktu (time series) dengan indeks berupa tanggal dan waktu.
-
-Data utama yang digunakan yaitu:
-
-- Demand : jumlah kebutuhan atau konsumsi listrik.
-- Temperature : suhu lingkungan pada waktu tertentu.
 </pre></div>
 </div>
+<p>Pada tahap ini, dataset vic_electricity diambil dari library Skforecast. Dataset ini berisi data historis konsumsi listrik (Demand) dan suhu (Temperature) di wilayah Victoria, Australia.</p>
+<p>Tujuan tahap ini adalah menyediakan data yang akan digunakan untuk melatih dan menguji model prediksi. Data yang diperoleh masih berupa data deret waktu (time series) dengan indeks berupa tanggal dan waktu.</p>
+<p>Data utama yang digunakan yaitu:</p>
+<ul class="simple">
+<li><p>Demand : jumlah kebutuhan atau konsumsi listrik.</p></li>
+<li><p>Temperature : suhu lingkungan pada waktu tertentu.</p></li>
+</ul>
 </section>
 <section id="agregasi-data-menjadi-harian">
 <h4>2. Agregasi data menjadi harian<a class="headerlink" href="#agregasi-data-menjadi-harian" title="Permalink to this heading">#</a></h4>
